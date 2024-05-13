@@ -10,7 +10,7 @@ public class App {
         Double total = 0.0;
        
 
-        while (wordLength <= 1000){
+        while (wordLength <= 10000){
             String text = generate(wordLength);
             text = preprocessText(text);
     
@@ -19,37 +19,57 @@ public class App {
            for(int i = 0; i < 10; i++){
             
 
-        
-
- 
-        /*testing oBrute_force = new testing();
+         brute_force oBrute_force = new brute_force();
 
         long startTime = System.nanoTime();
         System.out.println("brute force:");
-        oBrute_force.bruteForceMatch(text, pattern);
+        oBrute_force.bruteforce(text, pattern);
         long endTime = System.nanoTime();
         total += ((endTime - startTime) *  0.00001);
-        System.out.println("Execution time: " + ((endTime - startTime) *  0.00001) + " nanoseconds");*/ 
+        System.out.println("Execution time: " + ((endTime - startTime) *  0.00001) + " nanoseconds");
+ 
+         
+        
+           }
+           wordLength = wordLength + 100;
+           patternlength = patternlength +10;
+           System.out.println(total);
+           Double data = total/10.0 ;
+            String filepath = "output.txtbrute";
+            try (PrintWriter out = new PrintWriter(new FileOutputStream(filepath, true))) {
+                out.println(data);
+            } catch (FileNotFoundException e) {
+                System.err.println("File not found: " + e.getMessage());
+            }
+            total = 0.0;
 
-        testing matcher = new testing();
+        }
+
+         wordLength = 100; // Length of the random word
+         patternlength = 20;
+         total = 0.0;
+       
+
+        while (wordLength <= 10000){
+            String text = generate(wordLength);
+            text = preprocessText(text);
+    
+    
+            String pattern = pattern(text, patternlength);
+           for(int i = 0; i < 10; i++){
+            
+
+         kmp matcher = new kmp();
+
         long startTimekmp = System.nanoTime();
         System.out.println("kmp :");
-        matcher.kmpSearch(text, pattern);
+        matcher.search(text, pattern);
         long endTimekmp = System.nanoTime();
         total += ((endTimekmp - startTimekmp) *  0.00001);
 
         System.out.println("Execution time: " + ((endTimekmp - startTimekmp) *  0.00001) + " nanoseconds");
-
-
-        /*long startTimebm = System.nanoTime();
-        bm oBm = new bm();
-        System.out.println("bm :");
-        oBm.boyerMooreSearch(text, pattern);
-        long endTimebm = System.nanoTime();
-        total += ((endTimebm - startTimebm) *  0.00001);
-
-
-        System.out.println("Execution time: " + ((endTimebm - startTimebm) *  0.00001) + " nanoseconds");*/
+ 
+         
         
            }
            wordLength = wordLength + 100;
@@ -66,6 +86,49 @@ public class App {
 
         }
 
+
+
+        wordLength = 100; // Length of the random word
+         patternlength = 20;
+         total = 0.0;
+       
+
+        while (wordLength <= 10000){
+            String text = generate(wordLength);
+            text = preprocessText(text);
+    
+    
+            String pattern = pattern(text, patternlength);
+           for(int i = 0; i < 10; i++){
+            
+
+            bm oBm = new bm();
+        
+            long startTimebm = System.nanoTime();
+            System.out.println("bm :");
+            oBm.boyerMooreSearch(text, pattern);
+            long endTimebm = System.nanoTime();
+            total += ((endTimebm - startTimebm) *  0.00001);
+    
+    
+            System.out.println("Execution time: " + ((endTimebm - startTimebm) *  0.00001) + " nanoseconds");
+ 
+         
+        
+           }
+           wordLength = wordLength + 100;
+           patternlength = patternlength +10;
+           System.out.println(total);
+           Double data = total/10.0 ;
+            String filepath = "output.txtbm";
+            try (PrintWriter out = new PrintWriter(new FileOutputStream(filepath, true))) {
+                out.println(data);
+            } catch (FileNotFoundException e) {
+                System.err.println("File not found: " + e.getMessage());
+            }
+            total = 0.0;
+
+        }
 
         
         
@@ -91,7 +154,7 @@ public class App {
         }
 
         String randomWord = word.toString();
-       // System.out.println("Generated Random Word: " + randomWord);
+       //System.out.println("Generated Random Word: " + randomWord);
         return randomWord;
         
 

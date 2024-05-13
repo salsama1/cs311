@@ -1,9 +1,6 @@
-public class kmp {
 
-       
-    
-        // Function to perform KMP algorithm to find all occurrences of a pattern in the given text
-        public static int search(String text, String pattern) {
+public class KMPSearch {
+	 public static int search(String text, String pattern) {
 	        int n = text.length();
 	        int m = pattern.length();
 	        int[] lps = computeLPSArray(pattern);
@@ -50,6 +47,4 @@ public class kmp {
 	        }
 	        return lps;
 	    }
-    
-    
 }
